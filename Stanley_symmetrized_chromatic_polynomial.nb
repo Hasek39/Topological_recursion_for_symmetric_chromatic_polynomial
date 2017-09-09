@@ -1,0 +1,160 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5395,        152]
+NotebookOptionsPosition[      4977,        133]
+NotebookOutlinePosition[      5309,        148]
+CellTagsIndexPosition[      5266,        145]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{"Function", " ", "wPolynomial", " ", "evaluates", " ", 
+    RowBox[{"Stanley", "'"}], "s", " ", "symmetric", " ", "chromatic", " ", 
+    "polynomial", " ", "of", " ", "given", " ", 
+    RowBox[{"graph", ".", " ", "It"}], " ", "is", " ", "necessary", " ", "to",
+     " ", "manually", " ", "define", " ", "list", " ", "of", " ", "vertex", 
+    " ", "weights"}], ",", " ", 
+   RowBox[{
+   "lists", " ", "of", " ", "vertices", " ", "and", " ", "edges", " ", "of", 
+    " ", "desired", " ", 
+    RowBox[{"graph", "."}]}]}], "*)"}]], "Input",
+ CellChangeTimes->{{3.7139383423588123`*^9, 3.7139385593579493`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"weightsList", "=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3", ",", "4"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"graph", "=", 
+   RowBox[{"Graph", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2", ",", "3", ",", "4"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"1", "\[UndirectedEdge]", "2"}], ",", 
+       RowBox[{"2", "\[UndirectedEdge]", "3"}], ",", 
+       RowBox[{"2", "\[UndirectedEdge]", "4"}]}], "}"}], ",", 
+     RowBox[{"VertexWeight", "\[Rule]", "weightsList"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"template", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "a", ",", "b", ",", "c", ",", "d", ",", "e", ",", "f", ",", "g", ",", 
+     "h"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"variablesList", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"i", "=", "1"}], ",", 
+    RowBox[{"i", "\[LessEqual]", 
+     RowBox[{"Length", "[", "weightsList", "]"}]}], ",", 
+    RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"AppendTo", "[", 
+     RowBox[{"variablesList", ",", 
+      RowBox[{"template", "[", 
+       RowBox[{"[", 
+        RowBox[{"weightsList", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], "]"}], "]"}]}], "]"}]}], 
+   "\[IndentingNewLine]", "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.713895874088168*^9, 3.713895907362377*^9}, {
+  3.713937743743314*^9, 3.713937778514791*^9}, {3.713937817184634*^9, 
+  3.713937819041746*^9}, {3.713937875988193*^9, 3.713937954829773*^9}, {
+  3.7139379954828978`*^9, 3.713938050373065*^9}, {3.7139382728990393`*^9, 
+  3.713938283477386*^9}, {3.7139385697355223`*^9, 3.7139385715843163`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"wPolynomial", "[", "graph_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "e", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"EmptyGraphQ", "[", "graph", "]"}], "\[Equal]", "True"}], ",",
+        "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", 
+        RowBox[{"Times", "@@", "variablesList"}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", 
+        RowBox[{
+         RowBox[{"wPolynomial", "[", 
+          RowBox[{"EdgeDelete", "[", 
+           RowBox[{"graph", ",", 
+            RowBox[{"e", "=", 
+             RowBox[{"RandomSample", "[", 
+              RowBox[{
+               RowBox[{"EdgeList", "[", "graph", "]"}], ",", "1"}], "]"}]}]}],
+            "]"}], "]"}], "+", 
+         RowBox[{"wPolynomial", "[", 
+          RowBox[{"EdgeContract", "[", 
+           RowBox[{"graph", ",", "e"}], "]"}], "]"}]}], "\[IndentingNewLine]",
+         "]"}]}], "\[IndentingNewLine]", "]"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.713892749462418*^9, 3.713892787897999*^9}, {
+   3.7138928351445208`*^9, 3.71389285984398*^9}, {3.713892925705505*^9, 
+   3.7138930374472933`*^9}, {3.713893563718074*^9, 3.713893602871896*^9}, {
+   3.7138936699628897`*^9, 3.7138936785023537`*^9}, {3.713893903937439*^9, 
+   3.713893932271385*^9}, {3.713894462071909*^9, 3.713894587711088*^9}, {
+   3.713894670584956*^9, 3.7138946770555277`*^9}, {3.713895664802864*^9, 
+   3.7138956745382833`*^9}, 3.713937964488697*^9, {3.7139383012855473`*^9, 
+   3.71393830546393*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"wPolynomial", "[", "graph", "]"}]], "Input",
+ CellChangeTimes->{{3.713895463958684*^9, 3.713895465295133*^9}, {
+  3.71393831738525*^9, 3.713938322855529*^9}}],
+
+Cell[BoxData[
+ RowBox[{"8", " ", "a", " ", "b", " ", "c", " ", "d"}]], "Output",
+ CellChangeTimes->{3.7139383232869263`*^9}]
+}, Open  ]]
+},
+WindowSize->{668, 704},
+WindowMargins->{{7, Automatic}, {7, Automatic}},
+FrontEndVersion->"11.0 for Linux x86 (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 658, 13, 92, "Input"],
+Cell[1219, 35, 1784, 46, 172, "Input"],
+Cell[3006, 83, 1621, 36, 194, "Input"],
+Cell[CellGroupData[{
+Cell[4652, 123, 182, 3, 32, "Input"],
+Cell[4837, 128, 124, 2, 30, "Output"]
+}, Open  ]]
+}
+]
+*)
+
