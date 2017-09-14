@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      9918,        266]
-NotebookOptionsPosition[      9456,        246]
-NotebookOutlinePosition[      9788,        261]
-CellTagsIndexPosition[      9745,        258]
+NotebookDataLength[      9480,        246]
+NotebookOptionsPosition[      9019,        226]
+NotebookOutlinePosition[      9352,        241]
+CellTagsIndexPosition[      9309,        238]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -51,18 +51,6 @@ Cell[BoxData[{
        RowBox[{"2", "\[UndirectedEdge]", "3"}], ",", 
        RowBox[{"2", "\[UndirectedEdge]", "4"}]}], "}"}], ",", 
      RowBox[{"VertexWeight", "\[Rule]", "weightsList"}]}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"testweights", "=", 
-   RowBox[{"{", 
-    RowBox[{"3", ",", "5"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"testgraph", "=", 
-   RowBox[{"Graph", "[", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"1", "\[UndirectedEdge]", "2"}], "}"}], ",", 
-     RowBox[{"VertexWeight", "\[Rule]", "testweights"}]}], "]"}]}], 
   ";"}]}], "Input",
  CellChangeTimes->{{3.713895874088168*^9, 3.713895907362377*^9}, {
   3.713937743743314*^9, 3.713937778514791*^9}, {3.713937817184634*^9, 
@@ -70,7 +58,7 @@ Cell[BoxData[{
   3.7139379954828978`*^9, 3.713938050373065*^9}, {3.7139382728990393`*^9, 
   3.713938283477386*^9}, {3.7139385697355223`*^9, 3.7139385715843163`*^9}, {
   3.714274009241722*^9, 3.714274009970186*^9}, {3.714274406695092*^9, 
-  3.714274448119513*^9}}],
+  3.714274448119513*^9}, {3.714406049614274*^9, 3.714406050224348*^9}}],
 
 Cell[BoxData[{
  RowBox[{"ClearAll", "[", "edgeContract", "]"}], "\n", 
@@ -101,7 +89,7 @@ Cell[BoxData[{
     RowBox[{"SetProperty", "[", 
      RowBox[{"ec", ",", 
       RowBox[{"VertexWeight", "\[Rule]", 
-       RowBox[{"Append", "[", 
+       RowBox[{"Join", "[", 
         RowBox[{
          RowBox[{
           RowBox[{
@@ -115,11 +103,18 @@ Cell[BoxData[{
            RowBox[{
             RowBox[{"VertexList", "[", "graph", "]"}], ",", "v"}], "]"}]}], 
          ",", 
-         RowBox[{
-          RowBox[{"v", "[", 
-           RowBox[{"[", "1", "]"}], "]"}], "\[Rule]", "t"}]}], "]"}]}]}], 
-     "]"}]}], "]"}]}]}], "Input",
- CellChangeTimes->{{3.71427378459896*^9, 3.7142738169177723`*^9}}],
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"v", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], "\[Rule]", "t"}], ",", 
+           RowBox[{
+            RowBox[{"v", "[", 
+             RowBox[{"[", "2", "]"}], "]"}], "\[Rule]", "t"}]}], "}"}]}], 
+        "]"}]}]}], "]"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.71427378459896*^9, 3.7142738169177723`*^9}, {
+  3.714387266878824*^9, 3.714387268325575*^9}, {3.714387326635013*^9, 
+  3.714387328147562*^9}, {3.714388225248384*^9, 3.7143882594279737`*^9}}],
 
 Cell[BoxData[
  RowBox[{
@@ -127,46 +122,19 @@ Cell[BoxData[
    RowBox[{"wPolynomial", "[", "graph_", "]"}], ":=", 
    RowBox[{"Module", "[", 
     RowBox[{
-     RowBox[{"{", 
-      RowBox[{"e", ",", "j", ",", "k", ",", "q"}], "}"}], ",", 
-     "\[IndentingNewLine]", 
+     RowBox[{"{", "e", "}"}], ",", "\[IndentingNewLine]", 
      RowBox[{"If", "[", 
       RowBox[{
+       RowBox[{"EmptyGraphQ", "[", "graph", "]"}], ",", "\[IndentingNewLine]", 
        RowBox[{
-        RowBox[{"EmptyGraphQ", "[", "graph", "]"}], "\[Equal]", "True"}], ",",
-        "\[IndentingNewLine]", 
-       RowBox[{
-        RowBox[{"wList", "=", 
-         RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
-        RowBox[{"For", "[", 
-         RowBox[{
-          RowBox[{"j", "=", "1"}], ",", 
-          RowBox[{"j", "\[LessEqual]", 
-           RowBox[{"Length", "[", 
-            RowBox[{"VertexList", "[", "graph", "]"}], "]"}]}], ",", 
-          RowBox[{"++", "j"}], ",", "\[IndentingNewLine]", 
-          RowBox[{"AppendTo", "[", 
-           RowBox[{"wList", ",", 
-            RowBox[{"PropertyValue", "[", 
-             RowBox[{
-              RowBox[{"{", 
-               RowBox[{"graph", ",", "j"}], "}"}], ",", "VertexWeight"}], 
-             "]"}]}], "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
         RowBox[{"varList", "=", 
-         RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
-        RowBox[{"For", "[", 
          RowBox[{
-          RowBox[{"k", "=", "1"}], ",", 
-          RowBox[{"k", "\[LessEqual]", 
-           RowBox[{"Length", "[", "wList", "]"}]}], ",", 
-          RowBox[{"++", "k"}], ",", "\[IndentingNewLine]", 
-          RowBox[{"AppendTo", "[", 
-           RowBox[{"varList", ",", 
-            RowBox[{"Subscript", "[", 
-             RowBox[{"q", ",", 
-              RowBox[{"wList", "[", 
-               RowBox[{"[", "k", "]"}], "]"}]}], "]"}]}], "]"}]}], "]"}], ";",
-         "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"Subscript", "[", 
+            RowBox[{"q", ",", "#"}], "]"}], "&"}], "/@", 
+          RowBox[{"PropertyValue", "[", 
+           RowBox[{"graph", ",", "VertexWeight"}], "]"}]}]}], ";", 
+        "\[IndentingNewLine]", 
         RowBox[{"Return", "[", 
          RowBox[{"Times", "@@", "varList"}], "]"}]}], ",", 
        "\[IndentingNewLine]", 
@@ -181,8 +149,8 @@ Cell[BoxData[
           "]"}], "+", 
          RowBox[{"wPolynomial", "[", 
           RowBox[{"edgeContract", "[", 
-           RowBox[{"graph", ",", "e"}], "]"}], "]"}]}], "\[IndentingNewLine]",
-         "]"}]}], "\[IndentingNewLine]", "]"}]}], "]"}]}], ";"}]], "Input",
+           RowBox[{"graph", ",", "e"}], "]"}], "]"}]}], "]"}]}], 
+      "\[IndentingNewLine]", "]"}]}], "]"}]}], ";"}]], "Input",
  CellChangeTimes->{{3.713892749462418*^9, 3.713892787897999*^9}, {
    3.7138928351445208`*^9, 3.71389285984398*^9}, {3.713892925705505*^9, 
    3.7138930374472933`*^9}, {3.713893563718074*^9, 3.713893602871896*^9}, {
@@ -197,7 +165,11 @@ Cell[BoxData[
    3.714273833230357*^9}, {3.714273926800181*^9, 3.714273927268643*^9}, {
    3.714274035857956*^9, 3.714274036125658*^9}, {3.714274114233728*^9, 
    3.714274135458783*^9}, {3.714274524249381*^9, 3.714274527897031*^9}, {
-   3.7143178221054373`*^9, 3.714317833748043*^9}}],
+   3.7143178221054373`*^9, 3.714317833748043*^9}, {3.7143246664801273`*^9, 
+   3.7143246666771297`*^9}, {3.714387160897345*^9, 3.7143871797917347`*^9}, 
+   3.7143904904330606`*^9, {3.714390591713676*^9, 3.714390592637953*^9}, {
+   3.7144060689874153`*^9, 3.71440608627129*^9}, {3.714406145491961*^9, 
+   3.7144061463204107`*^9}}],
 
 Cell[CellGroupData[{
 
@@ -205,47 +177,55 @@ Cell[BoxData[
  RowBox[{"wPolynomial", "[", "graph", "]"}]], "Input",
  CellChangeTimes->{{3.713895463958684*^9, 3.713895465295133*^9}, {
   3.71393831738525*^9, 3.713938322855529*^9}, {3.714274491185671*^9, 
-  3.714274491914064*^9}, {3.714274542754178*^9, 3.714274543381809*^9}}],
+  3.714274491914064*^9}, {3.714274542754178*^9, 3.714274543381809*^9}, {
+  3.714318993150421*^9, 3.714318993585417*^9}, {3.714324683800233*^9, 
+  3.714324684524293*^9}, {3.714387226499885*^9, 3.7143872324562473`*^9}, {
+  3.714387689147279*^9, 3.7143876931449947`*^9}, {3.714397820363364*^9, 
+  3.714397821012911*^9}}],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{
-   SubscriptBox["q$1987", "1"], " ", 
-   SubscriptBox["q$1987", "2"], " ", 
-   SubscriptBox["q$1987", "3"], " ", 
-   SubscriptBox["q$1987", "4"]}], "+", 
+   SubscriptBox["q", "1"], " ", 
+   SubscriptBox["q", "2"], " ", 
+   SubscriptBox["q", "3"], " ", 
+   SubscriptBox["q", "4"]}], "+", 
   RowBox[{
-   SubscriptBox["q$1991", "1"], " ", 
-   SubscriptBox["q$1991", "3"], " ", 
-   SubscriptBox["q$1991", "6"]}], "+", 
+   SubsuperscriptBox["q", "3", "2"], " ", 
+   SubscriptBox["q", "4"]}], "+", 
   RowBox[{
-   SubscriptBox["q$1994", "1"], " ", 
-   SubscriptBox["q$1994", "5"], " ", 
-   SubscriptBox["q$1994", "$Failed"]}], "+", 
+   SubscriptBox["q", "1"], " ", 
+   SubscriptBox["q", "4"], " ", 
+   SubscriptBox["q", "5"]}], "+", 
   RowBox[{
-   SubscriptBox["q$1996", "1"], " ", 
-   SubscriptBox["q$1996", "9"]}], "+", 
+   SubscriptBox["q", "1"], " ", 
+   SubscriptBox["q", "3"], " ", 
+   SubscriptBox["q", "6"]}], "+", 
   RowBox[{
-   SubsuperscriptBox["q$2000", "3", "2"], " ", 
-   SubscriptBox["q$2000", "$Failed"]}], "+", 
+   SubscriptBox["q", "4"], " ", 
+   SubscriptBox["q", "6"]}], "+", 
   RowBox[{
-   SubscriptBox["q$2002", "7"], " ", 
-   SubscriptBox["q$2002", "$Failed"]}], "+", 
+   SubscriptBox["q", "3"], " ", 
+   SubscriptBox["q", "7"]}], "+", 
   RowBox[{
-   SubscriptBox["q$2005", "6"], " ", 
-   SubscriptBox["q$2005", "$Failed"]}], "+", 
-  SubscriptBox["q$2007", "10"]}]], "Output",
+   SubscriptBox["q", "1"], " ", 
+   SubscriptBox["q", "9"]}], "+", 
+  SubscriptBox["q", "10"]}]], "Output",
  CellChangeTimes->{
   3.7139383232869263`*^9, 3.714273679796424*^9, 3.714273710700611*^9, 
    3.7142737415179167`*^9, 3.714273839091508*^9, 3.714273931234694*^9, 
    3.714273971362377*^9, {3.71427401706101*^9, 3.714274039244858*^9}, {
    3.714274125000433*^9, 3.714274138455323*^9}, {3.7142744837895412`*^9, 
    3.714274492388555*^9}, {3.714274530215415*^9, 3.714274543967121*^9}, 
-   3.7143178591993504`*^9}]
+   3.7143178591993504`*^9, 3.714318994208612*^9, {3.714324678321289*^9, 
+   3.714324685526331*^9}, {3.71438720311193*^9, 3.7143872331068907`*^9}, 
+   3.714387339262615*^9, 3.714387693656015*^9, 3.7143882720402403`*^9, 
+   3.714388329015213*^9, 3.714389602750066*^9, 3.714397834099825*^9, 
+   3.714406105774459*^9, 3.7144061506880617`*^9}]
 }, Open  ]]
 },
-WindowSize->{676, 704},
-WindowMargins->{{Automatic, 0}, {7, Automatic}},
+WindowSize->{669, 704},
+WindowMargins->{{14, Automatic}, {7, Automatic}},
 FrontEndVersion->"11.0 for Linux x86 (64-bit) (July 28, 2016)",
 StyleDefinitions->"Default.nb"
 ]
@@ -261,12 +241,12 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[558, 20, 658, 13, 92, "Input"],
-Cell[1219, 35, 1461, 37, 112, "Input"],
-Cell[2683, 74, 1649, 47, 195, "Input"],
-Cell[4335, 123, 3513, 76, 314, "Input"],
+Cell[1219, 35, 1121, 25, 72, "Input"],
+Cell[2343, 62, 1973, 54, 195, "Input"],
+Cell[4319, 118, 2654, 53, 194, "Input"],
 Cell[CellGroupData[{
-Cell[7873, 203, 277, 4, 32, "Input"],
-Cell[8153, 209, 1287, 34, 118, "Output"]
+Cell[6998, 175, 523, 8, 32, "Input"],
+Cell[7524, 185, 1479, 38, 71, "Output"]
 }, Open  ]]
 }
 ]
