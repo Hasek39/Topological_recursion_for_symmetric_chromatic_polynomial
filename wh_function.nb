@@ -1,0 +1,196 @@
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"whFunction", "[", "n_", "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"i", ",", "l"}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"graphs", "=", 
+      RowBox[{"GraphData", "/@", 
+       RowBox[{"GraphData", "[", "n", "]"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"l", "=", 
+      RowBox[{"Length", "[", "graphs", "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"i", "=", "1"}], ",", 
+       RowBox[{"i", "\[LessEqual]", "l"}], ",", 
+       RowBox[{"++", "i"}], ",", 
+       RowBox[{
+        RowBox[{"graphs", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], "=", 
+        RowBox[{"SetProperty", "[", 
+         RowBox[{
+          RowBox[{"graphs", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], ",", 
+          RowBox[{"VertexWeight", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"1", ",", "1", ",", "1", ",", "1"}], "}"}]}]}], "]"}]}]}],
+       "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"w", "=", "0"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"i", "=", "1"}], ",", 
+       RowBox[{"i", "\[LessEqual]", "l"}], ",", 
+       RowBox[{"++", "i"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"w", "=", 
+        RowBox[{"w", "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"h", "^", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"Length", "[", 
+               RowBox[{"VertexList", "[", 
+                RowBox[{"graphs", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], "]"}], "]"}], "-", 
+              RowBox[{"Length", "[", 
+               RowBox[{"EdgeList", "[", 
+                RowBox[{"graphs", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], "]"}], "]"}]}], ")"}]}], 
+           ")"}], "*", 
+          RowBox[{
+           RowBox[{"wPolynomial", "[", 
+            RowBox[{"graphs", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], "]"}], "/", 
+           RowBox[{"(", 
+            RowBox[{"GroupOrder", "[", 
+             RowBox[{"GraphAutomorphismGroup", "[", 
+              RowBox[{"graphs", "[", 
+               RowBox[{"[", "i", "]"}], "]"}], "]"}], "]"}], ")"}]}]}]}]}]}], 
+      "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Return", "[", 
+      RowBox[{"Expand", "[", "w", "]"}], "]"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.714563295966476*^9, 3.714563388635829*^9}, {
+  3.714563966867639*^9, 3.714563970157897*^9}, {3.714564086329615*^9, 
+  3.714564094384609*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"whFunction", "[", "4", "]"}]], "Input",
+ CellChangeTimes->{{3.7145634125583344`*^9, 3.7145634172604437`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox[
+   RowBox[{"5", " ", 
+    SubsuperscriptBox["q", "1", "4"]}], "8"], "+", 
+  FractionBox[
+   SubsuperscriptBox["q", "1", "4"], 
+   RowBox[{"24", " ", 
+    SuperscriptBox["h", "2"]}]], "+", 
+  FractionBox[
+   SubsuperscriptBox["q", "1", "4"], 
+   RowBox[{"4", " ", "h"}]], "+", 
+  FractionBox[
+   RowBox[{"5", " ", "h", " ", 
+    SubsuperscriptBox["q", "1", "4"]}], "6"], "+", 
+  RowBox[{
+   FractionBox["5", "8"], " ", 
+   SuperscriptBox["h", "2"], " ", 
+   SubsuperscriptBox["q", "1", "4"]}], "+", 
+  RowBox[{
+   FractionBox["1", "4"], " ", 
+   SuperscriptBox["h", "3"], " ", 
+   SubsuperscriptBox["q", "1", "4"]}], "+", 
+  RowBox[{
+   FractionBox["1", "24"], " ", 
+   SuperscriptBox["h", "4"], " ", 
+   SubsuperscriptBox["q", "1", "4"]}], "+", 
+  RowBox[{
+   FractionBox["5", "2"], " ", 
+   SubsuperscriptBox["q", "1", "2"], " ", 
+   SubscriptBox["q", "2"]}], "+", 
+  FractionBox[
+   RowBox[{
+    SubsuperscriptBox["q", "1", "2"], " ", 
+    SubscriptBox["q", "2"]}], 
+   RowBox[{"4", " ", 
+    SuperscriptBox["h", "2"]}]], "+", 
+  FractionBox[
+   RowBox[{"5", " ", 
+    SubsuperscriptBox["q", "1", "2"], " ", 
+    SubscriptBox["q", "2"]}], 
+   RowBox[{"4", " ", "h"}]], "+", 
+  RowBox[{
+   FractionBox["5", "2"], " ", "h", " ", 
+   SubsuperscriptBox["q", "1", "2"], " ", 
+   SubscriptBox["q", "2"]}], "+", 
+  RowBox[{
+   FractionBox["5", "4"], " ", 
+   SuperscriptBox["h", "2"], " ", 
+   SubsuperscriptBox["q", "1", "2"], " ", 
+   SubscriptBox["q", "2"]}], "+", 
+  RowBox[{
+   FractionBox["1", "4"], " ", 
+   SuperscriptBox["h", "3"], " ", 
+   SubsuperscriptBox["q", "1", "2"], " ", 
+   SubscriptBox["q", "2"]}], "+", 
+  FractionBox[
+   RowBox[{"3", " ", 
+    SubsuperscriptBox["q", "2", "2"]}], "4"], "+", 
+  FractionBox[
+   SubsuperscriptBox["q", "2", "2"], 
+   RowBox[{"8", " ", 
+    SuperscriptBox["h", "2"]}]], "+", 
+  FractionBox[
+   SubsuperscriptBox["q", "2", "2"], 
+   RowBox[{"2", " ", "h"}]], "+", 
+  FractionBox[
+   RowBox[{"h", " ", 
+    SubsuperscriptBox["q", "2", "2"]}], "2"], "+", 
+  RowBox[{
+   FractionBox["1", "8"], " ", 
+   SuperscriptBox["h", "2"], " ", 
+   SubsuperscriptBox["q", "2", "2"]}], "+", 
+  FractionBox[
+   RowBox[{"5", " ", 
+    SubscriptBox["q", "1"], " ", 
+    SubscriptBox["q", "3"]}], "2"], "+", 
+  FractionBox[
+   RowBox[{
+    SubscriptBox["q", "1"], " ", 
+    SubscriptBox["q", "3"]}], 
+   RowBox[{"3", " ", 
+    SuperscriptBox["h", "2"]}]], "+", 
+  FractionBox[
+   RowBox[{"3", " ", 
+    SubscriptBox["q", "1"], " ", 
+    SubscriptBox["q", "3"]}], 
+   RowBox[{"2", " ", "h"}]], "+", 
+  RowBox[{
+   FractionBox["11", "6"], " ", "h", " ", 
+   SubscriptBox["q", "1"], " ", 
+   SubscriptBox["q", "3"]}], "+", 
+  RowBox[{
+   FractionBox["1", "2"], " ", 
+   SuperscriptBox["h", "2"], " ", 
+   SubscriptBox["q", "1"], " ", 
+   SubscriptBox["q", "3"]}], "+", 
+  FractionBox[
+   RowBox[{"11", " ", 
+    SubscriptBox["q", "4"]}], "8"], "+", 
+  FractionBox[
+   SubscriptBox["q", "4"], 
+   RowBox[{"4", " ", 
+    SuperscriptBox["h", "2"]}]], "+", 
+  FractionBox[
+   SubscriptBox["q", "4"], "h"], "+", 
+  FractionBox[
+   RowBox[{"2", " ", "h", " ", 
+    SubscriptBox["q", "4"]}], "3"]}]], "Output",
+ CellChangeTimes->{
+  3.714563428658428*^9, 3.7145634644906483`*^9, 3.714563651690624*^9, {
+   3.7145640794705048`*^9, 3.714564100530196*^9}, 3.714565639339126*^9, 
+   3.714655591550009*^9}]
+}, Open  ]]
+},
+WindowSize->{676, 704},
+WindowMargins->{{Automatic, 0}, {7, Automatic}},
+PrivateNotebookOptions->{"FileOutlineCache"->False},
+FrontEndVersion->"11.0 for Linux x86 (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+
