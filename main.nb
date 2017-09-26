@@ -10,14 +10,39 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     10754,        317]
-NotebookOptionsPosition[     10215,        295]
-NotebookOutlinePosition[     10542,        310]
-CellTagsIndexPosition[     10499,        307]
+NotebookDataLength[     11649,        343]
+NotebookOptionsPosition[     11065,        320]
+NotebookOutlinePosition[     11399,        335]
+CellTagsIndexPosition[     11356,        332]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"vertices", "=", 
+   RowBox[{
+    RowBox[{
+    "Import", "[", 
+     "\"\</home/hasek/Documents/HSE/Combinatorics of graphs and topological \
+recursion/Topological recursion for symmetric chromatic \
+polynomial/graph_database.csv\>\"", "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", "1"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"edges", "=", 
+   RowBox[{
+    RowBox[{
+    "Import", "[", 
+     "\"\</home/hasek/Documents/HSE/Combinatorics of graphs and topological \
+recursion/Topological recursion for symmetric chromatic \
+polynomial/graph_database.csv\>\"", "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", "2"}], "]"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.715444985253357*^9, 3.71544500142089*^9}, {
+  3.715445175485084*^9, 3.7154452564291286`*^9}}],
+
 Cell[BoxData[{
  RowBox[{"ClearAll", "[", "edgeContract", "]"}], "\n", 
  RowBox[{
@@ -294,7 +319,7 @@ Cell[BoxData[
 }, Open  ]]
 },
 WindowSize->{808, 621},
-WindowMargins->{{36, Automatic}, {75, 45}},
+WindowMargins->{{Automatic, 74}, {44, Automatic}},
 FrontEndVersion->"11.0 for Linux x86 (64-bit) (July 28, 2016)",
 StyleDefinitions->"Default.nb"
 ]
@@ -309,15 +334,16 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 1760, 51, 175, "Input"],
-Cell[2321, 73, 1291, 34, 154, "Input"],
-Cell[3615, 109, 2608, 67, 233, "Input"],
+Cell[558, 20, 847, 23, 216, "Input"],
+Cell[1408, 45, 1760, 51, 175, "Input"],
+Cell[3171, 98, 1291, 34, 154, "Input"],
+Cell[4465, 134, 2608, 67, 233, "Input"],
 Cell[CellGroupData[{
-Cell[6248, 180, 755, 13, 92, "Input"],
-Cell[7006, 195, 335, 7, 32, "Output"],
-Cell[7344, 204, 530, 14, 51, "Output"],
-Cell[7877, 220, 843, 25, 51, "Output"],
-Cell[8723, 247, 1476, 45, 118, "Output"]
+Cell[7098, 205, 755, 13, 92, "Input"],
+Cell[7856, 220, 335, 7, 32, "Output"],
+Cell[8194, 229, 530, 14, 51, "Output"],
+Cell[8727, 245, 843, 25, 51, "Output"],
+Cell[9573, 272, 1476, 45, 85, "Output"]
 }, Open  ]]
 }
 ]
