@@ -10,81 +10,102 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      3142,         99]
-NotebookOptionsPosition[      2875,         85]
-NotebookOutlinePosition[      3208,        100]
-CellTagsIndexPosition[      3165,         97]
+NotebookDataLength[      4412,        120]
+NotebookOptionsPosition[      4145,        106]
+NotebookOutlinePosition[      4477,        121]
+CellTagsIndexPosition[      4434,        118]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 Cell[BoxData[
  RowBox[{"(*", " ", 
-  RowBox[{
-  "Manually", " ", "specify", " ", "number", " ", "of", " ", "vertices", " ", 
-   "and", " ", "full", " ", "path", " ", "to", " ", "file", " ", "which", " ",
-    "will", " ", "store", " ", "graph", " ", 
-   RowBox[{"database", "."}]}], " ", "*)"}]], "Input",
- CellChangeTimes->{{3.715446303569323*^9, 3.71544641697552*^9}}],
+  RowBox[{"Manually", " ", "specify", " ", "number", " ", "of", " ", 
+   RowBox[{"vertices", ".", " ", "The"}], " ", "database", " ", "will", " ", 
+   "be", " ", "created", " ", "in", " ", "the", " ", "current", " ", 
+   "notebook", " ", 
+   RowBox[{"directory", "."}]}], " ", "*)"}]], "Input",
+ CellChangeTimes->{{3.715446303569323*^9, 3.71544641697552*^9}, {
+  3.715775842788693*^9, 3.71577588801365*^9}, {3.7157760095439587`*^9, 
+  3.7157760316028214`*^9}}],
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"n", "=", "4"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"maxGraphSize", "=", "8"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"graphs", "=", 
-   RowBox[{"GraphData", "/@", 
-    RowBox[{"GraphData", "[", "n", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"vectorVertex", " ", "=", 
+  RowBox[{"graphsVerticesEdges", "=", 
    RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"For", "[", 
    RowBox[{
-    RowBox[{"i", "=", "1"}], ",", 
-    RowBox[{"i", "\[LessEqual]", 
-     RowBox[{"Length", "[", "graphs", "]"}]}], ",", 
-    RowBox[{"++", "i"}], ",", 
-    RowBox[{"AppendTo", "[", 
-     RowBox[{"vectorVertex", ",", 
-      RowBox[{"VertexList", "[", 
-       RowBox[{"graphs", "[", 
-        RowBox[{"[", "i", "]"}], "]"}], "]"}]}], "]"}]}], "]"}], 
+    RowBox[{"n", "=", "1"}], ",", 
+    RowBox[{"n", "\[LessEqual]", "maxGraphSize"}], ",", 
+    RowBox[{"n", "++"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"graphs", "=", 
+      RowBox[{"GraphData", "/@", 
+       RowBox[{"GraphData", "[", "n", "]"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"graphsVerticesEdgesN", "=", 
+      RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"i", "=", "1"}], ",", 
+       RowBox[{"i", "\[LessEqual]", 
+        RowBox[{"Length", "[", "graphs", "]"}]}], ",", 
+       RowBox[{"++", "i"}], ",", 
+       RowBox[{"AppendTo", "[", 
+        RowBox[{"graphsVerticesEdgesN", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"VertexList", "[", 
+            RowBox[{"graphs", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], "]"}], ",", 
+           RowBox[{"EdgeList", "[", 
+            RowBox[{"graphs", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], "]"}]}], "}"}]}], "]"}]}], "]"}],
+      ";", "\[IndentingNewLine]", 
+     RowBox[{"AppendTo", "[", 
+      RowBox[{"graphsVerticesEdges", ",", "graphsVerticesEdgesN"}], "]"}], 
+     ";"}]}], "\[IndentingNewLine]", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"OpenWrite", "[", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+      "\"\<graphs_database.m\>\""}], "}"}], "]"}], "]"}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"vectorEdge", "=", 
-   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"For", "[", 
+  RowBox[{"Write", "[", 
    RowBox[{
-    RowBox[{"i", "=", "1"}], ",", 
-    RowBox[{"i", "\[LessEqual]", 
-     RowBox[{"Length", "[", "graphs", "]"}]}], ",", 
-    RowBox[{"++", "i"}], ",", 
-    RowBox[{"AppendTo", "[", 
-     RowBox[{"vectorEdge", ",", 
-      RowBox[{"EdgeList", "[", 
-       RowBox[{"graphs", "[", 
-        RowBox[{"[", "i", "]"}], "]"}], "]"}]}], "]"}]}], "]"}], 
-  ";"}], "\[IndentingNewLine]", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+       "\"\<graphs_database.m\>\""}], "}"}], "]"}], ",", 
+    "graphsVerticesEdges"}], "]"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"exportList", "=", 
-   RowBox[{"{", 
-    RowBox[{"vectorVertex", ",", "vectorEdge"}], "}"}]}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Export", "[", 
-   RowBox[{
-   "\"\</home/hasek/Documents/HSE/Combinatorics of graphs and topological \
-recursion/Topological recursion for symmetric chromatic \
-polynomial/graph_database.csv\>\"", ",", 
-    RowBox[{"Transpose", "[", "exportList", "]"}], ",", "\"\<CSV\>\""}], 
-   "]"}], ";"}]}], "Input",
+  RowBox[{"Close", "[", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+      "\"\<graphs_database.m\>\""}], "}"}], "]"}], "]"}], ";"}]}], "Input",
  CellChangeTimes->{{3.715444029303266*^9, 3.7154440344878273`*^9}, {
    3.715444068377771*^9, 3.715444116046227*^9}, {3.7154441491905317`*^9, 
-   3.71544426210751*^9}, 3.715444902620734*^9}]
+   3.71544426210751*^9}, 3.715444902620734*^9, {3.715753703387958*^9, 
+   3.7157537443014174`*^9}, {3.7157540836751432`*^9, 
+   3.7157541700062027`*^9}, {3.715754429912511*^9, 3.715754432842696*^9}, {
+   3.7157547445245743`*^9, 3.715754799114335*^9}, {3.715754834404469*^9, 
+   3.71575483904536*^9}, {3.71575489767317*^9, 3.715754940002536*^9}, {
+   3.715754984207793*^9, 3.715754992630019*^9}, {3.715764473918922*^9, 
+   3.715764525098*^9}, {3.715764585523776*^9, 3.715764611073661*^9}, {
+   3.7157648879965076`*^9, 3.715764915465255*^9}, {3.715775660608397*^9, 
+   3.715775777424572*^9}, {3.7157758141537523`*^9, 3.715775820865285*^9}},
+ ExpressionUUID -> "13f237c1-0583-4d96-b35c-f59606fbb743"]
 },
-WindowSize->{694, 704},
-WindowMargins->{{Automatic, 39}, {7, Automatic}},
+WindowSize->{662, 704},
+WindowMargins->{{0, Automatic}, {7, Automatic}},
 FrontEndVersion->"11.0 for Linux x86 (64-bit) (July 28, 2016)",
 StyleDefinitions->"Default.nb"
 ]
@@ -99,8 +120,8 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 369, 7, 52, "Input"],
-Cell[930, 29, 1941, 54, 294, "Input"]
+Cell[558, 20, 495, 9, 52, "Input"],
+Cell[1056, 31, 3085, 73, 319, "Input"]
 }
 ]
 *)
