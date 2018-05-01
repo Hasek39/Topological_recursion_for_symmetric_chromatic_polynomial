@@ -1,0 +1,255 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8924,        247]
+NotebookOptionsPosition[      8579,        231]
+NotebookOutlinePosition[      8904,        246]
+CellTagsIndexPosition[      8861,        243]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"OpenRead", "[", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+      "\"\<graphs_database.m\>\""}], "}"}], "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"graphsVerticesEdges", "=", 
+   RowBox[{"Read", "[", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+       "\"\<graphs_database.m\>\""}], "}"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Close", "[", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+      "\"\<graphs_database.m\>\""}], "}"}], "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"graphsAll", "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Graph", "[", 
+       RowBox[{
+        RowBox[{"#", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], ",", 
+        RowBox[{"#", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], "]"}], "&"}], ",", 
+     "graphsVerticesEdges", ",", 
+     RowBox[{"{", "2", "}"}]}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.715444985253357*^9, 3.71544500142089*^9}, {
+  3.715445175485084*^9, 3.7154452564291286`*^9}, {3.7157539944218607`*^9, 
+  3.715754018348104*^9}, {3.715754202766356*^9, 3.7157542094957857`*^9}, {
+  3.7157543418010073`*^9, 3.7157543492177753`*^9}, {3.715755274737607*^9, 
+  3.71575527943578*^9}, {3.7157553557788057`*^9, 3.715755370605633*^9}, {
+  3.715755409092164*^9, 3.7157554095450068`*^9}, {3.715764654634923*^9, 
+  3.715764666087335*^9}, {3.715764967538176*^9, 3.715764996092301*^9}, {
+  3.715775928366446*^9, 3.715775961852538*^9}},
+ ExpressionUUID -> "faceae1b-03f1-4835-9dfb-2c16cd091982"],
+
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", "edgeContract", "]"}], "\n", 
+ RowBox[{
+  RowBox[{"edgeContract", "[", 
+   RowBox[{"graph_", ",", "edge_"}], "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"ec", "=", 
+       RowBox[{"EdgeContract", "[", 
+        RowBox[{"graph", ",", "edge"}], "]"}]}], ",", 
+      RowBox[{"v", "=", 
+       RowBox[{"VertexList", "[", 
+        RowBox[{"{", "edge", "}"}], "]"}]}], ",", 
+      RowBox[{"t", "=", 
+       RowBox[{"Total", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"PropertyValue", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"graph", ",", "#"}], "}"}], ",", "VertexWeight"}], "]"}],
+           "&"}], "/@", 
+         RowBox[{"VertexList", "[", 
+          RowBox[{"{", "edge", "}"}], "]"}]}], "]"}]}]}], "}"}], ",", 
+    RowBox[{"SetProperty", "[", 
+     RowBox[{"ec", ",", 
+      RowBox[{"VertexWeight", "\[Rule]", 
+       RowBox[{"Join", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"#", "\[Rule]", 
+            RowBox[{"PropertyValue", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"graph", ",", "#"}], "}"}], ",", "VertexWeight"}], 
+             "]"}]}], "&"}], "/@", 
+          RowBox[{"Complement", "[", 
+           RowBox[{
+            RowBox[{"VertexList", "[", "graph", "]"}], ",", "v"}], "]"}]}], 
+         ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"v", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], "\[Rule]", "t"}], ",", 
+           RowBox[{
+            RowBox[{"v", "[", 
+             RowBox[{"[", "2", "]"}], "]"}], "\[Rule]", "t"}]}], "}"}]}], 
+        "]"}]}]}], "]"}]}], "]"}]}]}], "Input",
+ ExpressionUUID -> "e5b95fb7-40cc-421b-9c02-8881b8495271"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"wPolynomial", "[", "graph_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "e", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"EmptyGraphQ", "[", "graph", "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"varList", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Subscript", "[", 
+            RowBox[{"q", ",", "#"}], "]"}], "&"}], "/@", 
+          RowBox[{"PropertyValue", "[", 
+           RowBox[{"graph", ",", "VertexWeight"}], "]"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Return", "[", 
+         RowBox[{"Times", "@@", "varList"}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", 
+        RowBox[{
+         RowBox[{"wPolynomial", "[", 
+          RowBox[{"EdgeDelete", "[", 
+           RowBox[{"graph", ",", 
+            RowBox[{"e", "=", 
+             RowBox[{
+              RowBox[{"EdgeList", "[", "graph", "]"}], "[", 
+              RowBox[{"[", "1", "]"}], "]"}]}]}], "]"}], "]"}], "+", 
+         RowBox[{"wPolynomial", "[", 
+          RowBox[{"edgeContract", "[", 
+           RowBox[{"graph", ",", "e"}], "]"}], "]"}]}], "]"}]}], 
+      "\[IndentingNewLine]", "]"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7157554467922487`*^9, 3.7157555041139174`*^9}},
+ ExpressionUUID -> "c94e7350-08a3-41d9-ac93-bbc45a24df7a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"whFunction", "[", "n_", "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"i", ",", "l"}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"graphs", "=", 
+      RowBox[{"graphsAll", "[", 
+       RowBox[{"[", "n", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"l", "=", 
+      RowBox[{"Length", "[", "graphs", "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"i", "=", "1"}], ",", 
+       RowBox[{"i", "\[LessEqual]", "l"}], ",", 
+       RowBox[{"++", "i"}], ",", 
+       RowBox[{
+        RowBox[{"graphs", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], "=", 
+        RowBox[{"SetProperty", "[", 
+         RowBox[{
+          RowBox[{"graphs", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], ",", 
+          RowBox[{"VertexWeight", "\[Rule]", 
+           RowBox[{"Array", "[", 
+            RowBox[{
+             RowBox[{"1", "&"}], ",", 
+             RowBox[{"VertexCount", "[", 
+              RowBox[{"graphs", "[", 
+               RowBox[{"[", "i", "]"}], "]"}], "]"}]}], "]"}]}]}], "]"}]}]}], 
+      "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"w", "=", "0"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"i", "=", "1"}], ",", 
+       RowBox[{"i", "\[LessEqual]", "l"}], ",", 
+       RowBox[{"++", "i"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"PlanarGraphQ", "[", 
+          RowBox[{"graphs", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "]"}], ",", 
+         RowBox[{"w", "=", 
+          RowBox[{"w", "+", 
+           RowBox[{
+            RowBox[{"wPolynomial", "[", 
+             RowBox[{"graphs", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], "]"}], "/", 
+            RowBox[{"(", 
+             RowBox[{"GroupOrder", "[", 
+              RowBox[{"GraphAutomorphismGroup", "[", 
+               RowBox[{"graphs", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], "]"}], "]"}], ")"}]}]}]}]}], 
+        "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Return", "[", 
+      RowBox[{"Expand", "[", "w", "]"}], "]"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.715014190367351*^9, 3.7150141938072777`*^9}, {
+   3.715754515470162*^9, 3.715754523536154*^9}, {3.715755419962082*^9, 
+   3.715755424920312*^9}, {3.7157836998527937`*^9, 3.715783756347477*^9}, {
+   3.715783817176877*^9, 3.715783837793068*^9}, {3.715783956077903*^9, 
+   3.7157839604301577`*^9}, {3.715786185212308*^9, 3.7157861963627777`*^9}, {
+   3.7172132447795763`*^9, 3.7172132709461403`*^9}, {3.717673617726987*^9, 
+   3.717673646257114*^9}, {3.719739324459632*^9, 3.719739332555026*^9}, 
+   3.734176755698361*^9, {3.73417689665571*^9, 3.7341769267237997`*^9}, {
+   3.734184532199737*^9, 3.734184535909608*^9}},
+ ExpressionUUID -> "9b499a48-260c-41d0-b384-037c34c4b0d1"]
+},
+WindowSize->{682, 704},
+WindowMargins->{{0, Automatic}, {7, 30}},
+FrontEndVersion->"11.0 for Linux x86 (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1808, 47, 119, "Input"],
+Cell[2369, 69, 1819, 52, 195, "Input"],
+Cell[4191, 123, 1433, 36, 154, "Input"],
+Cell[5627, 161, 2948, 68, 293, "Input"]
+}
+]
+*)
+
